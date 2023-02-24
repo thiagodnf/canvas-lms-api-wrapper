@@ -1,7 +1,7 @@
 import Pages from './resources/Pages.js';
 import Assignments from './resources/Assignments.js';
 
-export default class CanvasApi {
+export default class Course {
 
     courseId;
 

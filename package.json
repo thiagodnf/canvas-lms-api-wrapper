@@ -1,6 +1,6 @@
 {
     "name": "@thiagodnf/canvaslms",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "A higher-level wrapper around Canvas's API",
     "author": "Thiago Ferreira",
     "license": "MIT",
