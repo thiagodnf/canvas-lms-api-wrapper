@@ -1,7 +1,9 @@
-import Pages from './src/resources/Pages.js';
-import Assignments from './src/resources/Assignments.js';
+import Course from "./src/Course.js"
+
+function CanvasApi(courseId) {
+    return Course(courseId);
+}
 
 export {
-    Pages as default,
-    Assignments
+    CanvasApi as default
 }
