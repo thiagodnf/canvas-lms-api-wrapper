@@ -1,5 +1,5 @@
-import Pages from './resources/Pages.js';
-import Assignments from './resources/Assignments.js';
+import Pages from './Pages.js';
+import Assignments from './Assignments.js';
 
 export default class Course {
 

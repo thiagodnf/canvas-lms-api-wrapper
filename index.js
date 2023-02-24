@@ -1,8 +1,5 @@
-import Course from "./src/Course.js"
 
-function CanvasApi(courseId) {
-    return Course(courseId);
-}
+import CanvasApi from "./src/CanvasApi.js"
 
 export {
     CanvasApi as default
