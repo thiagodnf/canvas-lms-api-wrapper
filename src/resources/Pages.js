@@ -2,10 +2,6 @@ import RestApi from "../utils/RestApi.js";
 
 export default class Pages {
 
-    course = null;
-
-    urlOrId = null;
-
     constructor(course, urlOrId) {
         this.course = course;
         this.urlOrId = urlOrId;
@@ -20,7 +16,7 @@ export default class Pages {
         let url = "/courses/:course_id/pages/:url_or_id"
 
         url = url.replace(":course_id", this.course.courseId);
-        url = url.replace(":url_or_id", this.course.urlOrId);
+        url = url.replace(":url_or_id", this.urlOrId);
 
         return RestApi.put(url, data);
     }

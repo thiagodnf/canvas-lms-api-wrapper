@@ -1,11 +1,12 @@
 import Pages from './Pages.js';
 import Assignments from './Assignments.js';
 
+/**
+ * This class represents the Course Resources
+ */
 export default class Course {
 
-    courseId;
-
-    course(courseId = -1) {
+    constructor(courseId = -1) {
         this.courseId = courseId;
     }
 

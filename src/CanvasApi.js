@@ -9,7 +9,7 @@ export default class CanvasApi {
 
     /**
      * @param {number} courseId The course Id
-     * @returns an instance of Course
+     * @returns an instance of {@link Course}
      */
     course(courseId = -1) {
         return new Course(courseId);
