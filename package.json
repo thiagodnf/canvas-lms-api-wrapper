@@ -1,5 +1,5 @@
 {
-    "name": "canvaslms",
+    "name": "@thiagodnf/canvaslms",
     "version": "0.0.1",
     "description": "a higher-level wrapper around Canvas's API",
     "author": "Thiago Ferreira",
