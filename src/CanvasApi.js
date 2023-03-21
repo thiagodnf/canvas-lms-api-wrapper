@@ -1,17 +1,15 @@
-import Course from "./resources/Course.js";
-import RestApi from "./utils/RestApi.js";
+import Pages from "./resources/Pages.js";
+import * as dotenv from "dotenv"
+
+dotenv.config();
 
 export default class CanvasApi {
 
-    constructor(apiToken) {
-        RestApi.API_TOKEN = apiToken;
+    constructor() {
+
     }
 
-    /**
-     * @param {number} courseId The course Id
-     * @returns an instance of {@link Course}
-     */
-    course(courseId = -1) {
-        return new Course(courseId);
+    pages() {
+        return new Pages();
     }
 }
