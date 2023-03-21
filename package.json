@@ -10,7 +10,8 @@
         "start": "node index.js pages ",
         "test": "jest --coverage ./test",
         "lint": "eslint .",
-        "lint-fix": "npx eslint . --fix"
+        "lint-fix": "npx eslint . --fix",
+        "build": "ncc build src/M2H.js -o dist --source-map  --license licenses.txt"
     },
     "devDependencies": {
         "@babel/preset-env": "7.20.2",
