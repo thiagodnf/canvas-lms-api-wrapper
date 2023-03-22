@@ -5,10 +5,10 @@ jest.mock("../../src/utils/RestApi.js", () => ({
     put: jest.fn()
 }));
 
-let pagesApi = undefined;
+let pagesApi = new CanvasApi().pages();
 
 beforeEach(() => {
-    pagesApi = new CanvasApi().pages();
+    RestApi.put.mockReset();
     RestApi.put.mockResolvedValue("ok");
 });
 
@@ -30,6 +30,32 @@ test("should NOT generate the correct URL or ID", () => {
     expect(() => { pagesApi.generateUrlOrId(undefined) }).toThrow(Error);
 });
 
+test("should throw exception if the data is not an object", () => {
+
+    expect(() => { pagesApi.createOrUpdate() }).toThrow(Error);
+    expect(() => { pagesApi.createOrUpdate(null) }).toThrow(Error);
+    expect(() => { pagesApi.createOrUpdate(undefined) }).toThrow(Error);
+    expect(() => { pagesApi.createOrUpdate("") }).toThrow(Error);
+    expect(() => { pagesApi.createOrUpdate(2) }).toThrow(Error);
+    expect(() => { pagesApi.createOrUpdate(3.4) }).toThrow(Error);
+});
+
+test("should throw exception if the data is object but missing required properties", () => {
+
+    expect(() => { pagesApi.createOrUpdate({}) }).toThrow(Error);
+    expect(() => { pagesApi.createOrUpdate({ title: "title" }) }).toThrow(Error);
+    expect(() => { pagesApi.createOrUpdate({ body: "body" }) }).toThrow(Error);
+    expect(() => { pagesApi.createOrUpdate({ color: "red" }) }).toThrow(Error);
+});
+
+test("should throw exception if the data.title is blank", () => {
+
+    expect(() => { pagesApi.createOrUpdate({ title: null, body: "" }) }).toThrow(Error);
+    expect(() => { pagesApi.createOrUpdate({ title: undefined, body: "" }) }).toThrow(Error);
+    expect(() => { pagesApi.createOrUpdate({ title: "", body: "" }) }).toThrow(Error);
+    expect(() => { pagesApi.createOrUpdate({ title: "    ", body: "" }) }).toThrow(Error);
+});
+
 test("should create or update the title and body ", () => {
 
     let title = "Title 1";
@@ -37,10 +63,7 @@ test("should create or update the title and body ", () => {
 
     pagesApi.createOrUpdate({ title, body }).then(() => {
 
-        // url
         expect(RestApi.put.mock.calls[0][0]).toBe("/courses/:course_id/pages/title-1");
-
-        // payload
         expect(RestApi.put.mock.calls[0][1]).toStrictEqual({ wiki_page: { title: "Title 1", body: "Body of Page" } });
     });
 });

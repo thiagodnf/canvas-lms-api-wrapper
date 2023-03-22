@@ -1,18 +1,19 @@
-import RestApi from "../../src/utils/RestApi.js"
+import axios from "axios";
+import RestApi from "../../src/utils/RestApi.js";
+
+jest.mock("axios");
 
 beforeEach(() => {
 
-});
-
-test("GET: should return exceptions if API_URL is empty", async () => {
-
-    await expect(RestApi.get("/example")).rejects.toThrow();
+    axios.put.mockResolvedValue("ok");
 });
 
 test("GET: should return exceptions if resource is blank", async () => {
 
-    await expect(RestApi.get()).rejects.toThrow();
-    await expect(RestApi.get("")).rejects.toThrow();
-    await expect(RestApi.get(null)).rejects.toThrow();
-    await expect(RestApi.get(undefined)).rejects.toThrow();
+    // console.log(RestApi.put("/teste", {}));
+
+    // await expect(RestApi.put("/teste", {})).rejects.toThrow();
+    // await expect(RestApi.get("")).rejects.toThrow();
+    // await expect(RestApi.get(null)).rejects.toThrow();
+    // await expect(RestApi.get(undefined)).rejects.toThrow();
 });

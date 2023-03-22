@@ -1,6 +1,10 @@
 import RestApi from "../utils/RestApi.js";
 import ObjectUtils from "../utils/ObjectUtils.js";
 
+/**
+ * Class responsible for managing the Pages of your course
+ * @author Thiago Ferreira
+ */
 export default class Pages {
 
     generateUrlOrId(text) {
@@ -12,16 +16,29 @@ export default class Pages {
         return text.toLowerCase().replace(/[^a-zA-Z0-9]+/g, "-");
     }
 
+    /**
+     * @param {object} data data to be sent to the server
+     * @param {string} data.title The page's title
+     * @param {string} data.body The page's body
+     * @returns Promise
+     */
     createOrUpdate(data) {
+
+        if (!ObjectUtils.isObject(data)) {
+            throw new Error("The data is not an object");
+        }
+
+        if (ObjectUtils.length(data) !== 2) {
+            throw new Error("The data object has the wrong number of properties. Max: 2");
+        }
+
+        if (!ObjectUtils.has(data, ["title", "body"])) {
+            throw new Error("'title' or 'body' (or both) are a required property");
+        }
 
         const defaults = {
             title: undefined,
-            body: undefined,
-            published: undefined,
-            editing_roles: undefined, // teachers, students, members, public
-            notify_of_update: undefined,
-            publish_at: undefined,
-            front_page: undefined
+            body: undefined
         };
 
         let wiki_page = { ...defaults, ...data };
