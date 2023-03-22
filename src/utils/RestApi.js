@@ -24,6 +24,10 @@ export default class RestApi {
 
     static getUrl(resource){
 
+        if (!resource || resource.trim().length === 0) {
+            throw new Error("Resource should not be empty");
+        }
+
         let url = `${RestApi.getApiUrl()}${resource}`;
 
         url = url.replace(":course_id", this.getCourseId());
@@ -31,29 +35,25 @@ export default class RestApi {
         return url;
     }
 
-    static async get(resource) {
+    static get(resource) {
 
         return new Promise((resolve, reject) => {
 
-            if (!resource || resource.trim().length === 0) {
-                throw new Error("Resource should not be empty");
-            }
+            let url = this.getUrl(resource);
 
-            axios.get(this.getUrl(resource), RestApi.getHeaders())
+            axios.get(url, RestApi.getHeaders())
                 .then(resolve)
                 .catch(reject);
         })
     }
 
-    static async put(resource, data = {}) {
+    static put(resource, data = {}) {
 
         return new Promise((resolve, reject) => {
 
-            if (!resource || resource.trim().length === 0) {
-                throw new Error("Resource should not be empty");
-            }
+            let url = this.getUrl(resource);
 
-            axios.put(this.getUrl(resource), data, RestApi.getHeaders())
+            axios.put(url, data, RestApi.getHeaders())
                 .then(resolve)
                 .catch(reject);
         })
