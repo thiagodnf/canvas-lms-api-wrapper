@@ -1,4 +1,4 @@
-import CanvasApi from "../../src/CanvasApi.js"
+import CanvasApi from "../../src/CanvasApi.js";
 import RestApi from "../../src/utils/RestApi.js";
 
 jest.mock("../../src/utils/RestApi.js", () => ({
@@ -15,29 +15,35 @@ beforeEach(() => {
 
 test("should throw exception if the data is not an object", () => {
 
-    expect(() => { syllabusApi.update() }).toThrow(Error);
-    expect(() => { syllabusApi.update(null) }).toThrow(Error);
-    expect(() => { syllabusApi.update(undefined) }).toThrow(Error);
-    expect(() => { syllabusApi.update("") }).toThrow(Error);
-    expect(() => { syllabusApi.update(2) }).toThrow(Error);
-    expect(() => { syllabusApi.update(3.4) }).toThrow(Error);
+    expect(() => { syllabusApi.update(); }).toThrow(Error);
+    expect(() => { syllabusApi.update(null); }).toThrow(Error);
+    expect(() => { syllabusApi.update(undefined); }).toThrow(Error);
+    expect(() => { syllabusApi.update(""); }).toThrow(Error);
+    expect(() => { syllabusApi.update(2); }).toThrow(Error);
+    expect(() => { syllabusApi.update(3.4); }).toThrow(Error);
 });
 
 test("should throw exception if the data is object but missing required properties", () => {
 
-    expect(() => { syllabusApi.update({}) }).toThrow(Error);
-    expect(() => { syllabusApi.update({ title: "title" }) }).toThrow(Error);
+    expect(() => { syllabusApi.update({}); }).toThrow(Error);
+    expect(() => { syllabusApi.update({ title: "title" }); }).toThrow(Error);
 });
+
+test("should throw exception if the data has more than the required properties", () => {
+
+    expect(() => { pagesApi.createOrUpdate({ title: "title", syllabus_body: "body" }); }).toThrow(Error);
+});
+
 
 test("should throw exception if the data is object but has the wrong number of properties", () => {
 
-    expect(() => { syllabusApi.update({}) }).toThrow(Error);
-    expect(() => { syllabusApi.update({ title: "title", syllabus_body: "" }) }).toThrow(Error);
+    expect(() => { syllabusApi.update({}); }).toThrow(Error);
+    expect(() => { syllabusApi.update({ title: "title", syllabus_body: "" }); }).toThrow(Error);
 });
 
 test("should not throw exception if the data is correct", () => {
 
-    expect(() => { syllabusApi.update({ syllabus_body: "" }) }).not.toThrow(Error);
+    expect(() => { syllabusApi.update({ syllabus_body: "" }); }).not.toThrow(Error);
 });
 
 test("should send the correct data to the correct url", () => {

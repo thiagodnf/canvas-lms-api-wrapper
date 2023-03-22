@@ -3,6 +3,7 @@ import ObjectUtils from "../utils/ObjectUtils.js";
 
 /**
  * Class responsible for managing the Syllabus of your course
+ *
  * @author Thiago Ferreira
  */
 export default class Syllabus {
@@ -18,12 +19,12 @@ export default class Syllabus {
             throw new Error("The data is not an object");
         }
 
-        if (ObjectUtils.length(data) !== 1) {
-            throw new Error("The data object has the wrong number of properties. Max: 1");
-        }
-
         if (!ObjectUtils.has(data, "syllabus_body")) {
             throw new Error("'syllabus_body' is a required property");
+        }
+
+        if (ObjectUtils.length(data) !== 1) {
+            throw new Error("The data object has the wrong number of properties. Max: 1");
         }
 
         const defaults = {
@@ -38,7 +39,7 @@ export default class Syllabus {
             course
         };
 
-        let url = "/courses/:course_id"
+        let url = "/courses/:course_id";
 
         return RestApi.put(url, payload);
     }

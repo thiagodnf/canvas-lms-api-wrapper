@@ -1,5 +1,5 @@
-import Pages from './Pages.js';
-import Assignments from './Assignments.js';
+import Pages from "./Pages.js";
+import Assignments from "./Assignments.js";
 
 /**
  * This class represents the Course Resources

@@ -26,7 +26,7 @@ export default class ObjectUtils {
     }
 
     static isObject(value) {
-        return value && typeof value === 'object' && value.constructor === Object;
+        return value && typeof value === "object" && value.constructor === Object;
     }
 
     static deleteNullProperties(object) {

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 export default class RestApi {
 
@@ -19,7 +19,7 @@ export default class RestApi {
             headers: {
                 "Authorization": `Bearer ${RestApi.getApiToken()}`
             }
-        }
+        };
     }
 
     static getUrl(resource){
@@ -44,7 +44,7 @@ export default class RestApi {
             axios.get(url, RestApi.getHeaders())
                 .then(resolve)
                 .catch(reject);
-        })
+        });
     }
 
     static put(resource, data = {}) {
@@ -56,6 +56,6 @@ export default class RestApi {
             axios.put(url, data, RestApi.getHeaders())
                 .then(resolve)
                 .catch(reject);
-        })
+        });
     }
 }

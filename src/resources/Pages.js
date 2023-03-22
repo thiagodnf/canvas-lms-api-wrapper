@@ -3,6 +3,7 @@ import ObjectUtils from "../utils/ObjectUtils.js";
 
 /**
  * Class responsible for managing the Pages of your course
+ *
  * @author Thiago Ferreira
  */
 export default class Pages {
@@ -28,12 +29,12 @@ export default class Pages {
             throw new Error("The data is not an object");
         }
 
-        if (ObjectUtils.length(data) !== 2) {
-            throw new Error("The data object has the wrong number of properties. Max: 2");
-        }
-
         if (!ObjectUtils.has(data, ["title", "body"])) {
             throw new Error("'title' or 'body' (or both) are a required property");
+        }
+
+        if (ObjectUtils.length(data) !== 2) {
+            throw new Error("The data object has the wrong number of properties. Max: 2");
         }
 
         const defaults = {
@@ -49,7 +50,7 @@ export default class Pages {
             wiki_page
         };
 
-        let url = "/courses/:course_id/pages/:url_or_id"
+        let url = "/courses/:course_id/pages/:url_or_id";
 
         url = url.replace(":url_or_id", this.generateUrlOrId(wiki_page.title));
 
