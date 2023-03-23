@@ -9,6 +9,16 @@ import ObjectUtils from "../utils/ObjectUtils.js";
 export default class GradingScheme {
 
     /**
+     * @returns {array} the list of the paginated list of grading standards for the given context that are visible to the user.
+     */
+    list(){
+
+        let url = "/courses/:course_id/grading_standards";
+
+        return RestApi.get(url, payload);
+    }
+
+    /**
      * Create a new grading standard
      *
      * @param {object} data data to be sent to the server
