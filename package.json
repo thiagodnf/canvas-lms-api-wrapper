@@ -1,6 +1,6 @@
 {
     "name": "@thiagodnf/canvas-lms-api-wrapper",
-    "version": "0.0.17",
+    "version": "0.0.18",
     "description": "A higher-level wrapper around Canvas LMS's API",
     "author": "Thiago Ferreira",
     "license": "MIT",
