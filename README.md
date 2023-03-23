@@ -32,10 +32,10 @@ After that, you can call the correct resouces described as follows:
 ### `pages`
 
 ```js
-let data {
+let data = {
     title: "This is the title",
     body: "This is the body"
-}
+};
 
 api.pages().createOrUpdate(data).then((response) => {
     console.log(response);
@@ -45,9 +45,9 @@ api.pages().createOrUpdate(data).then((response) => {
 ### `syllabus`
 
 ```js
-let data {
+let data = {
     syllabus_body: "This is the body"
-}
+};
 
 api.syllabus().update(data).then((response) => {
     console.log(response);
