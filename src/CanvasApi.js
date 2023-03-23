@@ -1,8 +1,5 @@
 import Pages from "./resources/Pages.js";
 import Syllabus from "./resources/Syllabus.js";
-import * as dotenv from "dotenv";
-
-dotenv.config();
 
 export default class CanvasApi {
 
