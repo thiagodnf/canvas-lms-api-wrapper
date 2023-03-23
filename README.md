@@ -10,7 +10,15 @@ A higher-level wrapper around Canvas LMS's API
 
 ## Usage
 
-Import the library and create an instance:
+Before running this app, you have to set the following environment variables:
+
+```js
+CANVAS_API_URL=
+CANVAS_API_TOKEN=
+CANVAS_COURSE_ID=
+```
+
+Then you are able import the library and create an `CanvasApi` instance:
 
 
 ```js
