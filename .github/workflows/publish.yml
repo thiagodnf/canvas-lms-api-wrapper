@@ -7,16 +7,42 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+
       - name: Checkout
         uses: actions/checkout@v3
+
+      - id: releaser
+        name: Verifying if a new version is needed
+        uses: thiagodnf/new-version-decider@v0.0.5
+        with:
+          loader: nodejs
+          configurationFile: ./package.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Setup Node
+        if: steps.releaser.outputs.newVersion == 'true'
         uses: actions/setup-node@v3
         with:
           node-version: 16
           registry-url: "https://registry.npmjs.org"
+
       - name: Install dependencies and build 🔧
+        if: steps.releaser.outputs.newVersion == 'true'
         run: npm ci && npm run all
+
       - name: Publish package on NPM 📦
+        if: steps.releaser.outputs.newVersion == 'true'
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Creating a new release on Github
+        uses: softprops/action-gh-release@v1
+        if: steps.releaser.outputs.newVersion == 'true'
+        with:
+          name: v${{ steps.releaser.outputs.currentVersion }}
+          tag_name: v${{steps.releaser.outputs.currentVersion}}
+          files: "*"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
