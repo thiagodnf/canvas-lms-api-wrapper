@@ -33,12 +33,6 @@ jobs:
         if: steps.releaser.outputs.newVersion == 'true'
         run: npm ci && npm run all
 
-      - name: Publish package on NPM 📦
-        if: steps.releaser.outputs.newVersion == 'true'
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: Creating a new release on Github
         uses: softprops/action-gh-release@v1
         if: steps.releaser.outputs.newVersion == 'true'
@@ -48,3 +42,9 @@ jobs:
           files: "*"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish package on NPM 📦
+        if: steps.releaser.outputs.newVersion == 'true'
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
