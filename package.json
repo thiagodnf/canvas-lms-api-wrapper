@@ -6,6 +6,12 @@
     "license": "MIT",
     "type": "module",
     "main": "index.js",
+    "keywords": [
+        "canvas",
+        "lms",
+        "api",
+        "wrapper"
+    ],
     "scripts": {
         "test": "jest --coverage ./test",
         "lint": "eslint .",
