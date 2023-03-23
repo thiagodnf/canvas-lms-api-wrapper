@@ -58,4 +58,16 @@ export default class RestApi {
                 .catch(reject);
         });
     }
+
+    static post(resource, data = {}) {
+
+        return new Promise((resolve, reject) => {
+
+            let url = this.getUrl(resource);
+
+            axios.post(url, data, RestApi.getHeaders())
+                .then(resolve)
+                .catch(reject);
+        });
+    }
 }

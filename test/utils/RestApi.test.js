@@ -6,6 +6,7 @@ jest.mock("axios");
 beforeEach(() => {
     axios.put.mockResolvedValue("ok");
     axios.get.mockResolvedValue("ok");
+    axios.post.mockResolvedValue("ok");
 });
 
 test("should return the correct canvas api token", () => {
@@ -57,4 +58,9 @@ test("should return a promise when PUT request is sent", () => {
 test("should return a promise when GET request is sent", () => {
 
     expect(RestApi.get("/pages/:course_id")).toBeInstanceOf(Promise);
+});
+
+test("should return a promise when POST request is sent", () => {
+
+    expect(RestApi.post("/pages/:course_id")).toBeInstanceOf(Promise);
 });
