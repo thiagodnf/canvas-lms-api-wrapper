@@ -1,7 +1,9 @@
 name: Publish to NPM
 on:
-  release:
-    types: [created]
+  pull_request:
+  push:
+    paths:
+      - 'package.json'
 
 jobs:
   build:
