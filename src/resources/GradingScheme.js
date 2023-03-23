@@ -15,7 +15,7 @@ export default class GradingScheme {
 
         let url = "/courses/:course_id/grading_standards";
 
-        return RestApi.get(url, payload);
+        return RestApi.get(url);
     }
 
     /**
