@@ -1,5 +1,6 @@
 import Pages from "./resources/Pages.js";
 import Syllabus from "./resources/Syllabus.js";
+import GradingScheme from "./resources/GradingScheme.js";
 
 export default class CanvasApi {
 
@@ -9,5 +10,9 @@ export default class CanvasApi {
 
     syllabus() {
         return new Syllabus();
+    }
+
+    gradingScheme() {
+        return new GradingScheme();
     }
 }
