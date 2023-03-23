@@ -10,13 +10,20 @@ A higher-level wrapper around Canvas LMS's API
 
 ## Usage
 
-You can use this library following:
+Import the library and create an instance:
+
 
 ```js
 import CanvasApi from "@thiagodnf/canvas-lms-api-wrapper"
 
 const api = new CanvasApi();
+```
 
+After that, you can call the correct resouces described as follows:
+
+### `pages`
+
+```js
 let data {
     title: "This is the title",
     body: "This is the body"
@@ -25,7 +32,18 @@ let data {
 api.pages().createOrUpdate(data).then((response) => {
     console.log(response);
 });
+```
 
+### `syllabus`
+
+```js
+let data {
+    syllabus_body: "This is the body"
+}
+
+api.syllabus().update(data).then((response) => {
+    console.log(response);
+});
 ```
 
 ## For Developers
