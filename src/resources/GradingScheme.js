@@ -38,7 +38,7 @@ export default class GradingScheme {
             this.checkIfExists(data.title).then(exist => {
 
                 if (!exist) {
-                    create(data).then(resolve).catch(reject);
+                    this.create(data).then(resolve).catch(reject);
                 }
             });
         });
