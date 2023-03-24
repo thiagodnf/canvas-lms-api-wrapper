@@ -11,11 +11,37 @@ export default class GradingScheme {
     /**
      * @returns {array} the list of the paginated list of grading standards for the given context that are visible to the user.
      */
-    list(){
+    list() {
 
         let url = "/courses/:course_id/grading_standards";
 
         return RestApi.get(url);
+    }
+
+    checkIfExists(title) {
+
+        return new Promise((resolve) => {
+
+            this.list().then(response => {
+
+                let found = response.data.filter(e => e.title === title);
+
+                resolve(found.length !== 0);
+            });
+        });
+    }
+
+    createIfNotExists(data) {
+
+        return new Promise((resolve, reject) => {
+
+            this.checkIfExists(data.title).then(exist => {
+
+                if (!exist) {
+                    create(data).then(resolve).catch(reject);
+                }
+            });
+        });
     }
 
     /**
