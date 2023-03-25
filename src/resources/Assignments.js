@@ -34,7 +34,7 @@ export default class Assignments {
 
         let assignment = { ...defaults, ...data };
 
-        ObjectUtils.deleteNullProperties(wiki_page);
+        ObjectUtils.deleteNullProperties(assignment);
 
         const payload = {
             assignment
