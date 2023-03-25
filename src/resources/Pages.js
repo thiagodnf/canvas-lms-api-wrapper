@@ -30,7 +30,7 @@ export default class Pages {
         }
 
         if (!ObjectUtils.has(data, ["title", "body"])) {
-            throw new Error("'title' or 'body' (or both) are a required property");
+            throw new Error("'title' and 'body' are a required property");
         }
 
         if (ObjectUtils.length(data) !== 2) {

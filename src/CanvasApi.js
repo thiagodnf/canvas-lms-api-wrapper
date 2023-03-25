@@ -1,6 +1,7 @@
 import Pages from "./resources/Pages.js";
 import Syllabus from "./resources/Syllabus.js";
 import GradingScheme from "./resources/GradingScheme.js";
+import Assignments from "./resources/Assignments.js";
 
 /**
  * Class responsible for managing all available APi's
@@ -28,5 +29,12 @@ export default class CanvasApi {
      */
     gradingScheme() {
         return new GradingScheme();
+    }
+
+     /**
+     * @returns {GradingScheme} Grading Scheme's API
+     */
+    assignments() {
+        return new Assignments();
     }
 }
